@@ -7,6 +7,7 @@ const PostalCode = () => {
   const [input, setInput] = useState("");
 
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
 
   useEffect(() => {
     axios.interceptors.request.use(
@@ -29,22 +30,27 @@ const PostalCode = () => {
     );
   }, []);
 
-  useEffect(() => {
-    // api();
-  }, [input]);
-
   const searchHandler = () => {
     async function api() {
-      await axios
+      const data = await axios
         .get(`https://api.zippopotam.us/in/${input}`)
-        .then((res) => setData(res.data))
-        .catch((err) => console.log("Not calling"));
+        .then((res) => {
+          setData(res.data);
+          setError("");
+        })
+        .catch((error) => {
+          if (error.response.status === 404) {
+            setError("Not Found");
+          }
+        });
     }
     api();
   };
   const handleClear = () => {
     setInput("");
     setData("");
+    setError("");
+    setLoading(false);
   };
   return (
     <div>
@@ -78,7 +84,19 @@ const PostalCode = () => {
           </div>
         </div>
         <div>
-          <DisplayInfo data={data} loading={loading} />
+          {error ? (
+            <h1
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "65vh",
+              }}>
+              {error}
+            </h1>
+          ) : (
+            <DisplayInfo data={data} loading={loading} />
+          )}
         </div>
       </div>
     </div>

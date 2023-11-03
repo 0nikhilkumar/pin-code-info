@@ -12,9 +12,14 @@
     background: linear-gradient(to right, rgb(20, 30, 48), rgb(36, 59, 85));
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    overflow: hidden;
+    overflow-y: scroll;
+    padding: 5px;
   }
   
+  .card::-webkit-scrollbar {
+    display: none;
+}
+
   .card:hover {
     box-shadow: rgb(0,0,0) 1px 1px 30px ,rgb(0,0,0) -5px 0px 10px;
   }
@@ -30,6 +35,11 @@
   .place-name{
     font-size: 30px;
     text-transform: uppercase;
+    border: 1px solid white;
+    /* border-radius: 10px; */
+    background-color: white;
+    color: #0A1A2A;
+    /* margin: 5px 5px 5px 0; */
   }
   
   .time-sub-text {
@@ -38,11 +48,19 @@
   }
   
   .day-text {
-    font-size: 18px;
+    font-size: 20px;
     margin-top: 0px;
     margin-left: 15px;
     font-weight: 500;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
+  .country-state{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
   }
   
   .moon {

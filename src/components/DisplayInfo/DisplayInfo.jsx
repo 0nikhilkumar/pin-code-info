@@ -10,11 +10,16 @@ const DisplayInfo = ({ data, loading }) => {
           data?.places.map((item, index) => (
             <div key={index} className="card">
               <div className="time-text">
-                <p>{data?.country ? data?.country : "None"}</p>
                 <span className="place-name">{item["place name"]}</span>
               </div>
-              <p className="day-text">{item.state}</p>
-              <div className="lati"></div>
+              <div className="country-state">
+              <span className="day-text">{item.state}, </span> 
+              <span>{data?.country ? data?.country : "None"}</span>
+              </div>
+              <div className="lati">
+                <p>Latitude : {item.latitude} </p>
+                <p>Longitude : {item.longitude} </p>
+              </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="1em"

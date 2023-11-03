@@ -5,8 +5,8 @@ const Header = () => {
   return (
     <>
       <section>
-        <div class="tags">
-          <p class="text-shadow">
+        <div className="tags">
+          <p className="text-shadow">
             <small>Pin Code Information</small>
           </p>
         </div>
